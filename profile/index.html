@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bhanu Govardhan Chennupalli | GCP Data Engineer & Lakehouse Architect</title>
+  <meta name="description"
+    content="Portfolio of Chennupalli Bhanu Govardhan - GCP Data Engineer with ~5 years of experience in PySpark, BigQuery, Airflow, Dataproc, and Cloud Lakehouse Architectures.">
+  <meta name="keywords"
+    content="GCP Data Engineer, PySpark, BigQuery, Apache Airflow, Dataproc, Data Lakehouse, Cloud Data Engineer, Bhanu Govardhan">
+  <meta name="author" content="Chennupalli Bhanu Govardhan">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap"
+    rel="stylesheet">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <header class="navbar">
+    <div class="container nav-container">
+      <a href="#hero" class="logo">
+        <span class="logo-dot"></span>
+        <span>bhanu<span class="gradient-text">.data</span></span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#architecture" class="nav-link">Architecture</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="theme-toggle-btn" id="themeToggle" title="Toggle Light/Dark Theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+        <a href="./Bhanu_Govardhan_Resume.pdf" target="_blank" download class="btn btn-outline"
+          id="downloadCvNavBtn">
+          <i class="fa-solid fa-file-arrow-down"></i> Resume
+        </a>
+        <button class="mobile-menu-btn" id="mobileMenuBtn">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section id="hero" class="hero section">
+      <div class="hero-glow"></div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="status-pulse"></span>
+            <span>Lead GCP Data Engineer | 5 Years Experience</span>
+          </div>
+
+          <h1 class="hero-title">
+            Architecting <span class="gradient-text">Cloud Lakehouses</span> & High-Throughput Pipelines
+          </h1>
+
+          <p class="hero-subtitle">
+            Hi, I'm <strong>Chennupalli Bhanu Govardhan</strong>. A certified Google Cloud Data Engineer with nearly 5
+            years of enterprise experience building scalable PySpark ETL/ELT pipelines, BigQuery Data Lakehouses, and
+            automated governance frameworks.
+          </p>
+
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-primary">
+              <i class="fa-solid fa-paper-plane"></i> Get In Touch
+            </a>
+            <a href="./Bhanu_Govardhan_Resume.pdf" target="_blank" class="btn btn-secondary">
+              <i class="fa-solid fa-eye"></i> View Resume
+            </a>
+          </div>
+
+          <!-- Highlight Statistics -->
+          <div class="hero-stats">
+            <div class="stat-card">
+              <div class="stat-value">5+</div>
+              <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">40%+</div>
+              <div class="stat-label">Latency Reduction</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">25%</div>
+              <div class="stat-label">Cloud Cost Saved</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-value">GCP</div>
+              <div class="stat-label">Certified Pro</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Code Preview Window -->
+        <div class="hero-graphic">
+          <div class="code-window">
+            <div class="code-window-header">
+              <div class="window-dots">
+                <span class="dot red"></span>
+                <span class="dot yellow"></span>
+                <span class="dot green"></span>
+              </div>
+              <div class="window-title">dataproc_pyspark_pipeline.py</div>
+            </div>
+            <div class="code-window-body">
+              <pre><code><span class="code-keyword">from</span> pyspark.sql <span class="code-keyword">import</span> SparkSession
+<span class="code-keyword">from</span> pyspark.sql.functions <span class="code-keyword">import</span> col, when
+
+<span class="code-comment"># Initialize Spark for Cloud Dataproc</span>
+spark = SparkSession.builder \
+    .<span class="code-func">appName</span>(<span class="code-str">"GCP_Lakehouse_ETL"</span>) \
+    .<span class="code-func">config</span>(<span class="code-str">"spark.sql.parquet.compression.codec"</span>, <span class="code-str">"snappy"</span>) \
+    .<span class="code-func">getOrCreate</span>()
+
+<span class="code-comment"># Process CDC & SCD Type 2 Dimension Data</span>
+df_raw = spark.read.<span class="code-func">format</span>(<span class="code-str">"bigquery"</span>) \
+    .<span class="code-func">load</span>(<span class="code-str">"enterprise_lake.raw_events"</span>)
+
+df_transformed = df_raw.<span class="code-func">filter</span>(col(<span class="code-str">"status"</span>) == <span class="code-str">"SUCCESS"</span>) \
+    .<span class="code-func">withColumn</span>(<span class="code-str">"latency_sec"</span>, col(<span class="code-str">"end_ts"</span>) - col(<span class="code-str">"start_ts"</span>))
+
+<span class="code-comment"># Write Partitioned Output to BigQuery</span>
+df_transformed.write.<span class="code-func">format</span>(<span class="code-str">"bigquery"</span>) \
+    .<span class="code-func">option</span>(<span class="code-str">"partitionField"</span>, <span class="code-str">"event_date"</span>) \
+    .<span class="code-func">mode</span>(<span class="code-str">"append"</span>) \
+    .<span class="code-func">save</span>(<span class="code-str">"enterprise_lakehouse.fact_events"</span>)</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Profile Overview</span>
+          <h2 class="section-title">Driven by Performance & Data Quality</h2>
+        </div>
+
+        <div
+          style="max-width: 850px; margin: 0 auto; text-align: center; font-size: 1.1rem; color: var(--text-muted); line-height: 1.8;">
+          <p style="margin-bottom: 1.5rem;">
+            I am a <strong>GCP-focused Data Engineer</strong> with extensive experience designing and leading
+            enterprise-scale data platforms. Proven track record of modernizing legacy on-prem systems (Teradata/Hadoop)
+            into Cloud-Native Lakehouse architectures using <strong>Google BigQuery</strong> and
+            <strong>Dataproc</strong>.
+          </p>
+          <p>
+            My expertise spans orchestrating complex, dependency-rich batch pipelines using <strong>Apache
+              Airflow</strong> and <strong>PySpark</strong>, enforcing engineering standards, CI/CD automation (Tekton),
+            and establishing automated data quality and governance frameworks that cut latency by <strong>40%+</strong>
+            and reduce cloud expenditure by <strong>25%</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Data Pipeline Architecture Section -->
+    <section id="architecture" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Interactive Architecture</span>
+          <h2 class="section-title">GCP Enterprise Lakehouse Pipeline</h2>
+        </div>
+
+        <div class="arch-diagram-card">
+          <p style="text-align: center; color: var(--text-muted); font-size: 0.95rem; margin-bottom: 1.5rem;">
+            Click on any stage below to inspect the underlying GCP services & engineering methodologies I implement:
+          </p>
+
+          <div class="pipeline-wrapper">
+            <!-- Stage 1 -->
+            <div class="pipeline-stage active" data-stage="ingestion">
+              <div class="stage-icon"><i class="fa-solid fa-database" style="color: var(--accent-cyan);"></i></div>
+              <div class="stage-title">1. Data Ingestion</div>
+              <div class="stage-desc">Legacy DBs, Adobe Analytics, APIs</div>
+              <div class="stage-connector"></div>
+            </div>
+            <!-- Stage 2 -->
+            <div class="pipeline-stage" data-stage="orchestration">
+              <div class="stage-icon"><i class="fa-solid fa-diagram-project" style="color: #3b82f6;"></i></div>
+              <div class="stage-title">2. Orchestration</div>
+              <div class="stage-desc">Cloud Composer / Airflow (Tekton CI/CD)</div>
+              <div class="stage-connector"></div>
+            </div>
+            <!-- Stage 3 -->
+            <div class="pipeline-stage" data-stage="processing">
+              <div class="stage-icon"><i class="fa-solid fa-bolt" style="color: #f59e0b;"></i></div>
+              <div class="stage-title">3. PySpark Compute</div>
+              <div class="stage-desc">Dataproc Autoscale & CDC (SCD 2)</div>
+              <div class="stage-connector"></div>
+            </div>
+            <!-- Stage 4 -->
+            <div class="pipeline-stage" data-stage="lakehouse">
+              <div class="stage-icon"><i class="fa-solid fa-layer-group" style="color: #10b981;"></i></div>
+              <div class="stage-title">4. GCP Lakehouse</div>
+              <div class="stage-desc">BigQuery Partitioning & GCS Storage</div>
+              <div class="stage-connector"></div>
+            </div>
+            <!-- Stage 5 -->
+            <div class="pipeline-stage" data-stage="serving">
+              <div class="stage-icon"><i class="fa-solid fa-chart-column" style="color: #ec4899;"></i></div>
+              <div class="stage-title">5. Serving & Quality</div>
+              <div class="stage-desc">Power BI Dashboards & Governance</div>
+            </div>
+          </div>
+
+          <!-- Dynamic Stage Detail Card -->
+          <div class="arch-detail-box" id="stageDetailBox">
+            <div class="arch-detail-icon" id="stageDetailIcon"><i class="fa-solid fa-database"></i></div>
+            <div>
+              <h4 id="stageDetailTitle" style="font-size: 1.1rem; margin-bottom: 0.25rem;">1. Data Ingestion Phase</h4>
+              <p id="stageDetailText" style="color: var(--text-muted);">
+                Ingesting high-volume multi-terabyte datasets from Teradata, Hadoop on-prem systems, and external event
+                streams (Adobe Analytics) into raw Google Cloud Storage (GCS) landed zones.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Tech Stack & Competencies</span>
+          <h2 class="section-title">Core Engineering Capabilities</h2>
+        </div>
+
+        <!-- Filter Tabs -->
+        <div class="skills-filter">
+          <button class="filter-btn active" data-filter="all">All Tech</button>
+          <button class="filter-btn" data-filter="gcp">GCP Cloud Stack</button>
+          <button class="filter-btn" data-filter="bigdata">Big Data & Processing</button>
+          <button class="filter-btn" data-filter="devops">Orchestration & DevOps</button>
+          <button class="filter-btn" data-filter="languages">Languages & DBs</button>
+          <button class="filter-btn" data-filter="governance">Governance & Analytics</button>
+        </div>
+
+        <div class="skills-grid" id="skillsGrid">
+          <!-- Skill Items -->
+          <div class="skill-card" data-category="gcp">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-cloud"></i></div>
+              <div class="skill-name">Google BigQuery</div>
+            </div>
+            <span class="skill-level">Expert</span>
+          </div>
+
+          <div class="skill-card" data-category="gcp bigdata">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-microchip"></i></div>
+              <div class="skill-name">Cloud Dataproc (Spark)</div>
+            </div>
+            <span class="skill-level">Expert</span>
+          </div>
+
+          <div class="skill-card" data-category="gcp bigdata">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-fire"></i></div>
+              <div class="skill-name">PySpark / Apache Spark</div>
+            </div>
+            <span class="skill-level">Expert</span>
+          </div>
+
+          <div class="skill-card" data-category="devops gcp">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-wind"></i></div>
+              <div class="skill-name">Apache Airflow / Composer</div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card" data-category="languages">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-brands fa-python"></i></div>
+              <div class="skill-name">Python</div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card" data-category="languages">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-database"></i></div>
+              <div class="skill-name">SQL (Teradata, BigQuery SQL)</div>
+            </div>
+            <span class="skill-level">Expert</span>
+          </div>
+
+          <div class="skill-card" data-category="bigdata">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-sitemap"></i></div>
+              <div class="skill-name">SCD Type 2 & CDC Patterns</div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card" data-category="gcp">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-box-archive"></i></div>
+              <div class="skill-name">Google Cloud Storage (GCS)</div>
+            </div>
+            <span class="skill-level">Expert</span>
+          </div>
+
+          <div class="skill-card" data-category="devops">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-gears"></i></div>
+              <div class="skill-name">Tekton CI/CD & Docker</div>
+            </div>
+            <span class="skill-level">Intermediate</span>
+          </div>
+
+          <div class="skill-card" data-category="devops">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-brands fa-git-alt"></i></div>
+              <div class="skill-name">Git & Terraform (Basic)</div>
+            </div>
+            <span class="skill-level">Intermediate</span>
+          </div>
+
+          <div class="skill-card" data-category="governance">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <div class="skill-name">Data Quality & Observability</div>
+            </div>
+            <span class="skill-level">Advanced</span>
+          </div>
+
+          <div class="skill-card" data-category="governance">
+            <div class="skill-info">
+              <div class="skill-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <div class="skill-name">Power BI & Adobe Analytics</div>
+            </div>
+            <span class="skill-level">Intermediate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Career History</span>
+          <h2 class="section-title">Professional Experience</h2>
+        </div>
+
+        <div class="timeline">
+          <!-- Item 1: HCL Technologies -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="company-tag">HCL Technologies</span>
+                <h3 class="timeline-title">Lead Data Engineer</h3>
+                <div class="timeline-meta">
+                  <span><i class="fa-regular fa-building"></i> Current Enterprise Role</span>
+                  <span><i class="fa-solid fa-location-dot"></i> India</span>
+                </div>
+              </div>
+
+              <ul class="timeline-bullets">
+                <li>Leading the design and engineering of enterprise cloud data solutions on Google Cloud Platform for
+                  large-scale client analytics.</li>
+                <li>Architecting high-concurrency PySpark batch & streaming pipelines on GCP Cloud Dataproc for
+                  real-time reporting.</li>
+                <li>Optimizing BigQuery partitioning and clustering logic to streamline queries and maintain strict
+                  performance SLAs.</li>
+                <li>Collaborating with cross-functional teams to integrate robust data quality rules, cost control
+                  policies, and CI/CD deployment pipelines.</li>
+              </ul>
+
+              <div class="tech-pills">
+                <span class="pill">GCP Dataproc</span>
+                <span class="pill">BigQuery</span>
+                <span class="pill">PySpark</span>
+                <span class="pill">Cloud Composer</span>
+                <span class="pill">Data Governance</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Item 2: Altimetrik India -->
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="timeline-content">
+              <div class="timeline-header">
+                <span class="company-tag">Altimetrik India</span>
+                <h3 class="timeline-title">Data Engineer</h3>
+                <div class="timeline-meta">
+                  <span><i class="fa-regular fa-calendar"></i> Sep 2021 – Mar 2026</span>
+                  <span><i class="fa-solid fa-location-dot"></i> India</span>
+                </div>
+              </div>
+
+              <ul class="timeline-bullets">
+                <li><strong>Data Platform Architecture:</strong> Executed architectural migration of multi-terabyte
+                  datasets from legacy on-prem systems (Teradata/Hadoop) to a GCP Data Lakehouse (BigQuery, GCS),
+                  creating a single source of truth for analytics.</li>
+                <li><strong>Complex Pipeline Engineering:</strong> Designed and optimized robust PySpark ETL frameworks
+                  on Dataproc to process massive datasets. Implemented logic for Slowly Changing Dimensions (SCD Type 2)
+                  and Change Data Capture (CDC).</li>
+                <li><strong>Performance & Cost Optimization:</strong> Reduced cloud costs by 25% through strategic
+                  BigQuery partitioning/clustering and Dataproc autoscaling policies. Tuned Spark configurations to
+                  optimize file sizes and minimize shuffle operations.</li>
+                <li><strong>Governance & Observability:</strong> Championed data quality by integrating automated
+                  validation checks (Python/SQL) and establishing observability using Airflow SLAs and logging, ensuring
+                  trusted, compliant data assets.</li>
+              </ul>
+
+              <div class="tech-pills">
+                <span class="pill">BigQuery</span>
+                <span class="pill">Dataproc</span>
+                <span class="pill">PySpark</span>
+                <span class="pill">Apache Airflow</span>
+                <span class="pill">Tekton CI/CD</span>
+                <span class="pill">Teradata Migration</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Key Projects Section -->
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Key Deliverables</span>
+          <h2 class="section-title">Featured Enterprise Projects</h2>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card">
+            <div>
+              <div class="project-header">
+                <div class="project-icon"><i class="fa-solid fa-chart-line"></i></div>
+                <span class="project-year">2025</span>
+              </div>
+              <h3 class="project-title">Site Performance Analytics Platform</h3>
+              <p class="project-desc">
+                Designed an end-to-end analytics pipeline ingesting Adobe Analytics data into GCP Cloud Storage.
+                Utilized Cloud Dataproc (Spark) for complex event transformation and modeled data in BigQuery to support
+                a high-performance Power BI dashboard, enabling rapid KPI monitoring for business stakeholders.
+              </p>
+            </div>
+            <div class="tech-pills">
+              <span class="pill">Adobe Analytics</span>
+              <span class="pill">Dataproc Spark</span>
+              <span class="pill">BigQuery</span>
+              <span class="pill">Power BI</span>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card">
+            <div>
+              <div class="project-header">
+                <div class="project-icon"><i class="fa-solid fa-server"></i></div>
+                <span class="project-year">Migration Milestone</span>
+              </div>
+              <h3 class="project-title">Legacy Teradata to GCP Lakehouse Migration</h3>
+              <p class="project-desc">
+                Spearheaded the migration of legacy multi-terabyte Hadoop & Teradata data stores to Google BigQuery and
+                Cloud Storage. Engineered optimized PySpark SCD Type 2 routines, achieving a 40%+ reduction in overall
+                query pipeline latency and 25% infrastructure cost reduction.
+              </p>
+            </div>
+            <div class="tech-pills">
+              <span class="pill">Teradata</span>
+              <span class="pill">Hadoop</span>
+              <span class="pill">PySpark</span>
+              <span class="pill">BigQuery Lakehouse</span>
+            </div>
+          </div>
+
+          <!-- Project 3 -->
+          <div class="project-card">
+            <div>
+              <div class="project-header">
+                <div class="project-icon"><i class="fa-solid fa-shield-check"></i></div>
+                <span class="project-year">Data Governance</span>
+              </div>
+              <h3 class="project-title">Automated Data Quality & Observability Framework</h3>
+              <p class="project-desc">
+                Built an enterprise-wide automated validation framework using Python & BigQuery SQL. Integrated SLA
+                tracking and automated alert triggers inside Apache Airflow (Cloud Composer) to ensure high data
+                reliability, zero audit violations, and transparent data lineage.
+              </p>
+            </div>
+            <div class="tech-pills">
+              <span class="pill">Python</span>
+              <span class="pill">Airflow SLAs</span>
+              <span class="pill">SQL Validation</span>
+              <span class="pill">Tekton CI/CD</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Certifications & Education Section -->
+    <section class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Credentials</span>
+          <h2 class="section-title">Certifications & Education</h2>
+        </div>
+
+        <div class="cert-edu-grid">
+          <!-- Certification -->
+          <div class="info-card">
+            <div class="info-icon-box">
+              <i class="fa-solid fa-award"></i>
+            </div>
+            <div>
+              <h3 class="info-title">Google Cloud Certified</h3>
+              <div class="info-subtitle">Professional Data Engineer</div>
+              <div class="info-meta"><i class="fa-solid fa-calendar-check"></i> Active Credential (Valid through
+                07/2026)</div>
+            </div>
+          </div>
+
+          <!-- Education -->
+          <div class="info-card">
+            <div class="info-icon-box">
+              <i class="fa-solid fa-graduation-cap"></i>
+            </div>
+            <div>
+              <h3 class="info-title">B.Tech, Computer Science & Engineering</h3>
+              <div class="info-subtitle">Rajiv Gandhi University of Knowledge Technologies (RGUKT)</div>
+              <div class="info-meta"><i class="fa-regular fa-calendar"></i> Jul 2017 – Aug 2021</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+      <div class="container">
+        <div class="section-title-wrap">
+          <span class="section-tag">Let's Connect</span>
+          <h2 class="section-title">Get In Touch</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Let's discuss GCP Data Platform Architectures</h3>
+            <p style="color: var(--text-muted); font-size: 0.95rem;">
+              Whether you are looking for a Lead GCP Data Engineer, PySpark ETL specialist, or want to discuss
+              enterprise cloud migrations, feel free to reach out directly.
+            </p>
+
+            <div class="contact-info-list">
+              <div class="contact-item">
+                <div class="contact-icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <div class="contact-detail-title">Direct Email</div>
+                  <div class="contact-detail-value" id="emailText">bhanugovardhan7070@gmail.com</div>
+                </div>
+                <button class="btn btn-outline" id="copyEmailBtn"
+                  style="margin-left: auto; padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                  <i class="fa-regular fa-copy"></i> Copy
+                </button>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon"><i class="fa-brands fa-linkedin-in"></i></div>
+                <div>
+                  <div class="contact-detail-title">LinkedIn Profile</div>
+                  <a href="https://www.linkedin.com/in/bhanugovardhan" target="_blank" class="contact-detail-value"
+                    style="color: var(--accent-cyan); text-decoration: underline;">
+                    linkedin.com/in/bhanugovardhan
+                  </a>
+                </div>
+              </div>
+
+              <div class="contact-item">
+                <div class="contact-icon"><i class="fa-solid fa-file-pdf"></i></div>
+                <div>
+                  <div class="contact-detail-title">Official Curriculum Vitae</div>
+                  <div class="contact-detail-value">Bhanu_Govardhan_Resume.pdf</div>
+                </div>
+                <a href="./Bhanu_Govardhan_Resume.pdf" target="_blank" download class="btn btn-primary"
+                  style="margin-left: auto; padding: 0.4rem 0.8rem; font-size: 0.8rem;">
+                  <i class="fa-solid fa-download"></i> Download
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Contact Form -->
+          <form class="contact-form" id="contactForm">
+            <div class="form-group">
+              <label class="form-label" for="senderName">Your Name</label>
+              <input type="text" id="senderName" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="senderEmail">Your Email</label>
+              <input type="email" id="senderEmail" class="form-input" placeholder="e.g. sarah@company.com" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="message">Message</label>
+              <textarea id="message" class="form-textarea"
+                placeholder="Hi Bhanu, we'd love to discuss a Lead Data Engineer role..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width: 100%;">
+              <i class="fa-solid fa-paper-plane"></i> Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <p>© <span id="year">2026</span> Chennupalli Bhanu Govardhan. Crafted with performance & precision. Hosted on
+        GitHub Pages.</p>
+    </div>
+  </footer>
+
+  <!-- Toast Notice Element -->
+  <div class="toast-notice" id="toastNotice">
+    <i class="fa-solid fa-circle-check" style="color: var(--accent-emerald);"></i>
+    <span id="toastMessage">Email copied to clipboard!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
